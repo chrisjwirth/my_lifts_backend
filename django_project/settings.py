@@ -82,9 +82,9 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = (
-    "https://api.mylifts.com",
-    "https://mylifts.com",
-    "https://www.mylifts.com",
+    "https://api.mylifts.app",
+    "https://mylifts.app",
+    "https://www.mylifts.app",
     "https://mylifts.herokuapp.com",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
@@ -93,9 +93,9 @@ CORS_ALLOWED_ORIGINS = (
 )
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://api.mylifts.com",
-    "https://mylifts.com",
-    "https://www.mylifts.com",
+    "https://api.mylifts.app",
+    "https://mylifts.app",
+    "https://www.mylifts.app",
     "https://mylifts.herokuapp.com",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
