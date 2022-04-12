@@ -86,9 +86,9 @@ CORS_ALLOWED_ORIGINS = (
     "https://mylifts.app",
     "https://www.mylifts.app",
     "https://mylifts.herokuapp.com",
-    "https://mylifts.netlify.app"
+    "https://mylifts.netlify.app",
     "https://mylifts-staging.herokuapp.com",
-    "https://mylifts-staging.netlify.app"
+    "https://mylifts-staging.netlify.app",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:8000",
@@ -100,9 +100,9 @@ CSRF_TRUSTED_ORIGINS = [
     "https://mylifts.app",
     "https://www.mylifts.app",
     "https://mylifts.herokuapp.com",
-    "https://mylifts.netlify.app"
+    "https://mylifts.netlify.app",
     "https://mylifts-staging.herokuapp.com",
-    "https://mylifts-staging.netlify.app"
+    "https://mylifts-staging.netlify.app",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
 ]
