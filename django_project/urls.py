@@ -16,14 +16,21 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include, re_path
 from django.views.generic import TemplateView
-from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 from dj_rest_auth.views import PasswordResetView, PasswordResetConfirmView
+from dj_rest_auth.registration.views import VerifyEmailView
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("workouts/", include("workouts.urls")),
     path("api-auth/", include("rest_framework.urls")),
+    path(
+        "auth/account-confirm-email/",
+        VerifyEmailView.as_view(),
+        name="account_email_verification_sent",
+    ),
     path(
         "auth/password/reset/", PasswordResetView.as_view(), name="rest_password_reset"
     ),

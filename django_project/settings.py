@@ -68,6 +68,10 @@ REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
+REST_AUTH_SERIALIZERS = {
+    "PASSWORD_RESET_SERIALIZER": "accounts.serializers.CustomPasswordResetSerializer"
+}
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -133,9 +137,18 @@ AUTHENTICATION_BACKENDS = [
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.zoho.com"
+EMAIL_HOST_USER = "support@mylifts.app"
+EMAIL_HOST_PASSWORD = env.str("ZOHO_PASSWORD")
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+DEFAULT_FROM_EMAIL = "support@mylifts.app"
 
 SITE_ID = 1
+FRONTEND_URL = env.str("FRONTEND_URL")
 
 WSGI_APPLICATION = "django_project.wsgi.application"
 
@@ -165,9 +178,12 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_SUBJECT_PREFIX = ""
 ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_ADAPTER = "accounts.adapter.AccountAdapter"
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/

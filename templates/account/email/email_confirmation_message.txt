@@ -1,0 +1,11 @@
+{% autoescape off %}
+Hello from My Lifts!
+
+You're receiving this email because you or someone else has registered for a My Lifts account with this email address.
+
+Click the link below to confirm this account.
+
+{{ activate_url }}
+
+Thanks for using My Lifts!
+{% endautoescape %}
