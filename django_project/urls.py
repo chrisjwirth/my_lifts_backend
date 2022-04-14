@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
+from django.views.generic import TemplateView
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 from dj_rest_auth.views import PasswordResetView, PasswordResetConfirmView
@@ -23,10 +24,17 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("workouts/", include("workouts.urls")),
     path("api-auth/", include("rest_framework.urls")),
-    path("auth/password/reset/", PasswordResetView.as_view()),
     path(
-        "auth/password/reset/confirm/<str:uidb64>/<str:token>/",
+        "auth/password/reset/", PasswordResetView.as_view(), name="rest_password_reset"
+    ),
+    path(
+        "auth/password/reset/confirm/",
         PasswordResetConfirmView.as_view(),
+        name="rest_password_reset_confirm",
+    ),
+    path(
+        "auth/password/reset/confirm/<uidb64>/<token>/",
+        TemplateView.as_view(template_name="password_reset_confirm.html"),
         name="password_reset_confirm",
     ),
     path("auth/registration/", include("dj_rest_auth.registration.urls")),
