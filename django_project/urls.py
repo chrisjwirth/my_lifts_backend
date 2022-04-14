@@ -14,17 +14,24 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+
+from dj_rest_auth.views import PasswordResetView, PasswordResetConfirmView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("workouts/", include("workouts.urls")),
     path("api-auth/", include("rest_framework.urls")),
-    path("auth/", include("dj_rest_auth.urls")),
+    path("auth/password/reset/", PasswordResetView.as_view()),
     path(
-        "auth/registration/", include("dj_rest_auth.registration.urls")
+        "auth/password/reset/confirm/<str:uidb64>/<str:token>/",
+        PasswordResetConfirmView.as_view(),
+        name="password_reset_confirm",
     ),
+    path("auth/registration/", include("dj_rest_auth.registration.urls")),
+    path("auth/", include("dj_rest_auth.urls")),
+    path("account/", include("allauth.urls")),
     path("schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
         "",
